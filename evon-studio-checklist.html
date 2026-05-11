@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evon Studio｜零基础妈妈变现起步清单</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --beige: #F0E8DA;
+    --warm-white: #FFFDF9;
+    --orange: #D4733A;
+    --orange-light: #E8956A;
+    --sage: #8A9E7E;
+    --sage-light: #B8C9A8;
+    --gold: #C9A84C;
+    --brown: #6B4E3D;
+    --text-dark: #3A2E28;
+    --text-mid: #7A6458;
+    --text-light: #B0A090;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'Lato', 'Noto Serif SC', serif;
+    color: var(--text-dark);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Background botanical texture */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(138,158,126,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(212,115,58,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Botanical SVG decorations */
+  .botanical-corner {
+    position: fixed;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .botanical-corner.top-left { top: -20px; left: -20px; transform: rotate(0deg); }
+  .botanical-corner.bottom-right { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeSlideDown 0.8s ease both;
+  }
+
+  .brand-tag {
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    border: 1px solid var(--sage-light);
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    color: var(--brown);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .header-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .header-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--beige), var(--gold), var(--beige), transparent); }
+  .divider-leaf { color: var(--sage); font-size: 14px; }
+
+  /* Intro box */
+  .intro-box {
+    background: var(--warm-white);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    animation: fadeSlideDown 0.9s ease 0.1s both;
+  }
+  .intro-box p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text-mid);
+  }
+  .intro-box strong { color: var(--orange); font-weight: 600; }
+
+  /* Steps */
+  .step {
+    margin-bottom: 28px;
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 24px 26px;
+    border: 1px solid rgba(201,168,76,0.15);
+    box-shadow: 0 2px 16px rgba(106,78,61,0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeSlideUp 0.7s ease both;
+  }
+  .step:hover {
+    box-shadow: 0 6px 28px rgba(106,78,61,0.10);
+    transform: translateY(-2px);
+  }
+  .step:nth-child(1) { animation-delay: 0.2s; }
+  .step:nth-child(2) { animation-delay: 0.3s; }
+  .step:nth-child(3) { animation-delay: 0.4s; }
+  .step:nth-child(4) { animation-delay: 0.5s; }
+  .step:nth-child(5) { animation-delay: 0.6s; }
+
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(212,115,58,0.3);
+    margin-top: 2px;
+  }
+
+  .step-title-wrap {}
+  .step-en {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--sage);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .step-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+
+  .step-time {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: rgba(138,158,126,0.12);
+    color: var(--sage);
+    font-size: 11px;
+    font-family: 'Lato', sans-serif;
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  /* Checklist items */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .checklist li:hover { background: rgba(212,115,58,0.04); }
+
+  .checklist li.checked { opacity: 0.5; }
+  .checklist li.checked .check-text { text-decoration: line-through; color: var(--text-light); }
+
+  .check-box {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--orange-light);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.25s ease;
+    background: white;
+  }
+  .checklist li.checked .check-box {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  .check-icon {
+    opacity: 0;
+    color: white;
+    font-size: 11px;
+    transition: opacity 0.2s;
+  }
+  .checklist li.checked .check-icon { opacity: 1; }
+
+  .check-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    transition: all 0.2s;
+  }
+  .check-text small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-light);
+    font-family: 'Lato', sans-serif;
+    margin-top: 2px;
+  }
+
+  /* Fill-in template box */
+  .template-box {
+    margin-top: 16px;
+    background: linear-gradient(135deg, rgba(240,232,218,0.6), rgba(250,246,240,0.8));
+    border: 1px dashed var(--gold);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .template-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .template-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--text-mid);
+  }
+  .template-text .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid var(--orange-light);
+    min-width: 80px;
+    color: var(--orange);
+    font-weight: 600;
+    padding: 0 4px;
+  }
+
+  /* Example table */
+  .example-grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .example-card {
+    background: rgba(138,158,126,0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--sage-light);
+  }
+  .example-role {
+    font-size: 11px;
+    color: var(--sage);
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .example-teach {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12.5px;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+
+  /* Formats row */
+  .formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .format-tag {
+    background: white;
+    border: 1px solid var(--beige);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--text-mid);
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .format-tag span { color: var(--orange); }
+
+  /* Progress bar */
+  .progress-section {
+    margin: 36px 0 28px;
+    animation: fadeSlideUp 0.7s ease 0.7s both;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+  .progress-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--orange);
+  }
+  .progress-bar-bg {
+    height: 6px;
+    background: var(--beige);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--orange), var(--orange-light));
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--beige);
+    animation: fadeSlideUp 0.7s ease 0.8s both;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .footer-handle {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    font-family: 'Lato', sans-serif;
+  }
+  .footer-leaf {
+    font-size: 20px;
+    margin: 12px 0;
+    color: var(--sage);
+    opacity: 0.6;
+  }
+
+  /* Completion banner */
+  .completion-banner {
+    display: none;
+    background: linear-gradient(135deg, var(--sage), #6B8A5E);
+    color: white;
+    border-radius: 14px;
+    padding: 20px 24px;
+    text-align: center;
+    margin: 24px 0;
+    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .completion-banner.show { display: block; }
+  .completion-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .completion-banner p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  /* Animations */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 480px) {
+    .page { padding: 32px 20px 60px; }
+    .example-grid { grid-template-columns: 1fr; }
+    .step { padding: 20px 18px; }
+  }
+
+  /* Print friendly */
+  @media print {
+    body { background: white; }
+    .step { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .botanical-corner { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Botanical SVG corners -->
+<svg class="botanical-corner top-left" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 200 Q60 140 110 100 Q80 80 40 90 Q70 60 120 70 Q100 40 60 30 Q100 20 140 50 Q160 20 180 40" stroke="#8A9E7E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="80" cy="120" rx="22" ry="12" transform="rotate(-35 80 120)" fill="#8A9E7E" opacity="0.3"/>
+  <ellipse cx="120" cy="90" rx="18" ry="10" transform="rotate(-55 120 90)" fill="#C9A84C" opacity="0.25"/>
+  <ellipse cx="55" cy="155" rx="16" ry="9" transform="rotate(-20 55 155)" fill="#8A9E7E" opacity="0.2"/>
+  <circle cx="40" cy="85" r="3" fill="#D4733A" opacity="0.3"/>
+  <circle cx="105" cy="55" r="2" fill="#8A9E7E" opacity="0.4"/>
+  <circle cx="155" cy="35" r="2.5" fill="#C9A84C" opacity="0.3"/>
+</svg>
+
+<svg class="botanical-corner bottom-right" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 200 Q60 140 110 100 Q80 80 40 90 Q70 60 120 70 Q100 40 60 30 Q100 20 140 50 Q160 20 180 40" stroke="#8A9E7E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="80" cy="120" rx="22" ry="12" transform="rotate(-35 80 120)" fill="#8A9E7E" opacity="0.3"/>
+  <ellipse cx="120" cy="90" rx="18" ry="10" transform="rotate(-55 120 90)" fill="#C9A84C" opacity="0.25"/>
+  <ellipse cx="55" cy="155" rx="16" ry="9" transform="rotate(-20 55 155)" fill="#8A9E7E" opacity="0.2"/>
+</svg>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand-tag">✦ Evon Studio Free Guide</div>
+    <h1>零基础妈妈<br><em>变现起步清单</em></h1>
+    <p class="header-sub">5个步骤 · 任何背景都能套用 · 30分钟开始行动</p>
+    <p class="header-desc">From Stay-at-Home Mum to Digital Product Creator</p>
+  </div>
+
+  <!-- Intro box -->
+  <div class="intro-box">
+    <p>你不需要完美的计划，你只需要<strong>开始第一步</strong>。<br>
+    无论你之前做什么工作，有没有工作经验，这份清单都适合你。<br>
+    每完成一格，就是你离变现更近的一步。</p>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span class="progress-label-zh">🌿 你的进度</span>
+      <span class="progress-count" id="progressText">0 / 17 完成</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Completion banner -->
+  <div class="completion-banner" id="completionBanner">
+    <h3>🎉 你做到了！</h3>
+    <p>恭喜你完成全部清单！<br>你已经准备好开始你的数字产品之旅了。<br>下一步：把你的产品发出去，让第一个客户找到你 ✨</p>
+  </div>
+
+  <!-- Steps container -->
+  <div id="stepsContainer">
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title-wrap">
+          <span class="step-en">Step One · Discover</span>
+          <div class="step-zh">找到你的「饭碗知识」</div>
+        </div>
+        <div class="step-time">⏱ 5分钟</div>
+      </div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">写下你做过的工作/经历（哪怕是很久以前的）
+            <small>护士、老师、会计、烘焙、销售、全职妈妈都算</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">写下你最近自己学会或解决过的事情
+            <small>例：省钱购物、宝宝睡眠、Instagram 排版</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">圈出其中一个「别人经常来问你」的话题
+            <small>朋友问你的 = 你的隐藏专长</small>
+          </div>
+        </li>
+      </ul>
+
+      <div class="template-box">
+        <div class="template-label">✏️ 填空练习</div>
+        <div class="template-text">
+          我曾经 <span class="blank">做过 / 学过</span>，<br>
+          所以我懂得如何帮人解决 <span class="blank">什么问题</span>。
+        </div>
+      </div>
+
+      <div class="example-grid">
+        <div class="example-card">
+          <div class="example-role">护士 Nurse</div>
+          <div class="example-teach">教妈妈看懂宝宝发烧信号</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">会计 Accountant</div>
+          <div class="example-teach">教家庭记账省钱法</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">老师 Teacher</div>
+          <div class="example-teach">教小孩阅读专注力方法</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">全职妈妈 SAHM</div>
+          <div class="example-teach">教碎片时间管理 + 省钱技巧</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title-wrap">
+          <span class="step-en">Step Two · Define</span>
+          <div class="step-zh">确定你要帮的那个人</div>
+        </div>
+        <div class="step-time">⏱ 5分钟</div>
+      </div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">描述她是谁（年龄、身份、处境）
+            <small>例：25-40岁、全职妈妈、想在家赚副业</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">写下她最大的烦恼或挫折感是什么
+            <small>例："不知道从哪里开始"、"没有时间"</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">写下她希望达到的结果是什么
+            <small>例：每个月多$500-$1000、在家工作自由时间</small>
+          </div>
+        </li>
+      </ul>
+
+      <div class="template-box">
+        <div class="template-label">✏️ 填空练习</div>
+        <div class="template-text">
+          我帮 <span class="blank">目标对象</span>，<br>
+          解决她 <span class="blank">最大的烦恼</span>，<br>
+          帮她实现 <span class="blank">她想要的结果</span>。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title-wrap">
+          <span class="step-en">Step Three · Package</span>
+          <div class="step-zh">打包成一个简单产品</div>
+        </div>
+        <div class="step-time">⏱ 10分钟</div>
+      </div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">选择一个你今天就能完成的产品格式
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">把你的知识整理成 3-5 个步骤或重点
+            <small>不需要写很长，清晰 > 完美</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">给产品起一个简单清楚的名字
+            <small>例："在家妈妈接单入门指南"</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">用 Canva 或 Word 简单排版（不需要很花哨）
+          </div>
+        </li>
+      </ul>
+
+      <div class="formats">
+        <div class="format-tag"><span>📄</span> PDF 清单 / Checklist</div>
+        <div class="format-tag"><span>📖</span> 简单电子书（5-10页）</div>
+        <div class="format-tag"><span>🗂️</span> 模版（Canva / Excel）</div>
+        <div class="format-tag"><span>🎥</span> 短视频教学</div>
+        <div class="format-tag"><span>📋</span> 步骤指南 How-to Guide</div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title-wrap">
+          <span class="step-en">Step Four · Craft</span>
+          <div class="step-zh">写出一句话吸引人的文案</div>
+        </div>
+        <div class="step-time">⏱ 5分钟</div>
+      </div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">套用公式写出你的一句话文案
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">确认文案里有"谁"、"怎么做"、"结果"三个元素
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">加上一句消除顾虑的话
+            <small>例："就算完全没经验也可以"</small>
+          </div>
+        </li>
+      </ul>
+
+      <div class="template-box">
+        <div class="template-label">✏️ 文案公式</div>
+        <div class="template-text">
+          我帮 <span class="blank">谁</span>，<br>
+          用 <span class="blank">多短时间 / 多简单的方法</span>，<br>
+          做到 <span class="blank">什么结果</span>，<br>
+          就算 <span class="blank">她的顾虑</span> 也没关系。
+        </div>
+      </div>
+
+      <div style="margin-top:12px; background: rgba(212,115,58,0.06); border-radius:10px; padding:12px 14px;">
+        <div style="font-size:10px; letter-spacing:2px; color:var(--orange); font-family:'Lato',sans-serif; margin-bottom:6px;">💡 EXAMPLE</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:13px; color:var(--text-mid); line-height:1.8;">
+          「我帮全职妈妈，用每天1小时，在家开始赚第一笔钱，就算完全没有经验也没关系。」
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">5</div>
+        <div class="step-title-wrap">
+          <span class="step-en">Step Five · Publish</span>
+          <div class="step-zh">今天就发出去！</div>
+        </div>
+        <div class="step-time">⏱ 5分钟</div>
+      </div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">选好今天要发的平台
+            <small>Instagram Story / Facebook / TikTok — 选你最常用的一个就好</small>
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">套用发帖模版写好你的帖子
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">设定一个关键词（例："开始"、"资料"）让人回复或DM
+          </div>
+        </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"><span class="check-icon">✓</span></div>
+          <div class="check-text">发出去！不等完美，先测试反应 🚀
+          </div>
+        </li>
+      </ul>
+
+      <div class="template-box">
+        <div class="template-label">✏️ 发帖模版</div>
+        <div class="template-text">
+          我曾经是 <span class="blank">你的背景</span>，<br>
+          现在我把我懂的东西，打包成一份<span class="blank">产品名称</span>，<br>
+          帮你 <span class="blank">解决什么问题</span>。<br><br>
+          📩 留言 "<span class="blank">关键词</span>" 或 DM 我获取
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end stepsContainer -->
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-leaf">🌿</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-leaf">🌿 ✦ 🌿</div>
+    <div class="footer-brand">Evon Studio</div>
+    <div class="footer-handle">evonstudio.com</div>
+    <p style="margin-top:16px; font-family:'Noto Serif SC',serif; font-size:12px; color:var(--text-light); line-height:1.8;">
+      你不需要完美，你只需要开始。<br>
+      <em style="font-style:italic; color:var(--sage);">You don't need to be perfect. You just need to begin.</em>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const TOTAL = document.querySelectorAll('.checklist li').length;
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('.checklist li.checked').length;
+    const pct = Math.round((checked / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = checked + ' / ' + TOTAL + ' 完成';
+
+    const banner = document.getElementById('completionBanner');
+    if (checked === TOTAL) {
+      banner.classList.add('show');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      banner.classList.remove('show');
+    }
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
